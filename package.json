@@ -25,7 +25,7 @@
         "url": "git+https://github.com/JackZeled0n/covid-api"
     },
     "keywords": [],
-    "author": "Jake Zeledon <jakezeledon@hotmail.com>",
+    "author": "Jake Antonio Ruiz Zeledón <jackiezeledon@gmail.com>",
     "license": "ISC",
     "dependencies": {
         "axios": "^0.21.1",
