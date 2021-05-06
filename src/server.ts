@@ -1,8 +1,9 @@
 import http from 'http';
+import { variables } from './environment/variables';
 
 export default (app: Express.Application) => {
     const httpServer = new http.Server(app);
-    httpServer.listen(+(process.env.PORT || 3000), () => {
+    httpServer.listen(variables.SERVER_PORT, () => {
         console.log('Start server covid API');
     });
     process.on('SIGTERM', () => {
