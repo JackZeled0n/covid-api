@@ -1,22 +1,19 @@
-import { Document } from 'mongoose';
+import { Document, Model } from 'mongoose';
 
 export interface Case {
-    pop_1M: string;
     active: number;
     critical: number;
-    new: number;
+    newCases: number;
     recovered: number;
     total: number;
 }
 
 export interface Death {
-    pop_1M: string;
-    new: number;
+    newDeaths: number;
     total: number;
 }
 
 export interface Test {
-    pop_1M: string;
     total: number;
 }
 
@@ -30,3 +27,5 @@ export interface CovidStatisticDocument extends Document {
     day: Date;
     time: string;
 }
+
+export type CovidStatisticModel = Model<CovidStatisticDocument>;

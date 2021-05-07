@@ -1,20 +1,27 @@
+import 'dotenv/config';
+import 'reflect-metadata';
 import Express, { Request, Response } from 'express';
 
-import dotenv from 'dotenv';
-
+import errorMiddleware from './middleware/error.middleware';
+import loadContainer from './container/index';
 import loadMiddlewares from './middleware/index';
+import loadRoutes from './routes/index';
 import startServer from './server';
 import initDBConnection from './db/index';
 
-dotenv.config();
 const app = Express();
 
 loadMiddlewares(app);
-
-initDBConnection().then(() => {
-    startServer(app);
-});
+loadContainer();
 
 app.get('/', (_req: Request, res: Response) => {
     res.send('<h1>Covid API!</h1>');
+});
+
+loadRoutes(app);
+
+app.use(errorMiddleware);
+
+initDBConnection().then(() => {
+    startServer(app);
 });
