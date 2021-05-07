@@ -1,13 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
-import { Inject, Service } from 'typedi';
+import { Service } from 'typedi';
 import axios from 'axios';
-import { Logger } from 'winston';
 import SyncService from '../services/sync.service';
 import request from '../config/rapid-api-covid';
 
 @Service()
 class SyncController {
-    constructor(private readonly syncService: SyncService, @Inject('logger') readonly log: Logger) {}
+    constructor(private readonly syncService: SyncService) {}
 
     public async sync(_req: Request, res: Response, next: NextFunction) {
         try {
