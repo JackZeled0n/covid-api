@@ -2,7 +2,12 @@ import Container from 'typedi';
 import express, { NextFunction, Request, Response } from 'express';
 import validateFieldsMiddleware from '../middleware/validate-fields.middleware';
 import StatisticController from '../controllers/statistic.controller';
-import { newCasesValidation, newDeathsValidation, newTestsValidation } from './validations/statistics.validation';
+import {
+    newCasesValidation,
+    newDeathsValidation,
+    newTestsValidation,
+    statisticsByCountryNameValidation,
+} from './validations/statistics.validation';
 
 export default (app: express.Application) => {
     const statisticController = Container.get(StatisticController);
@@ -27,6 +32,14 @@ export default (app: express.Application) => {
         newTestsValidation,
         validateFieldsMiddleware,
         (req: Request, res: Response, next: NextFunction) => statisticController.addNewTests(req, res, next),
+    );
+
+    router.get(
+        '/by-country-name',
+        statisticsByCountryNameValidation,
+        validateFieldsMiddleware,
+        (req: Request, res: Response, next: NextFunction) =>
+            statisticController.getStatisticsByCountryName(req, res, next),
     );
 
     app.use('/statistics', router);

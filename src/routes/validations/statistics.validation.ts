@@ -1,4 +1,4 @@
-import { body } from 'express-validator';
+import { body, query } from 'express-validator';
 import { validateStatisticId } from './utils';
 
 const newCasesValidation = [
@@ -39,4 +39,6 @@ const newDeathsValidation = [
         .withMessage('The number of new deaths must be greater than zero'),
 ];
 
-export { newDeathsValidation, newCasesValidation, newTestsValidation };
+const statisticsByCountryNameValidation = [query('countryName', 'The countryName is required').isString().exists()];
+
+export { newDeathsValidation, newCasesValidation, newTestsValidation, statisticsByCountryNameValidation };
