@@ -23,12 +23,12 @@ class StatisticService {
         }
     }
 
-    async getStatisticsByCountryName(continentName: string): Promise<CovidStatisticDocument[]> {
+    async getStatisticsByContinentName(continentName: string): Promise<CovidStatisticDocument[]> {
         try {
-            const statistics = await this.statisticRepository.getStatisticsByCountryName(continentName);
+            const statistics = await this.statisticRepository.getStatisticsByContinentName(continentName);
             return statistics;
         } catch (err) {
-            this.log.error('An error has been ocurred in getStatisticsByCountryName service');
+            this.log.error('An error has been ocurred in getStatisticsByContinentName service');
             throw err;
         }
     }

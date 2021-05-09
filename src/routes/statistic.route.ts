@@ -6,7 +6,7 @@ import {
     newCasesValidation,
     newDeathsValidation,
     newTestsValidation,
-    statisticsByCountryNameValidation,
+    statisticsByContinentValidation,
 } from './validations/statistics.validation';
 
 export default (app: express.Application) => {
@@ -35,11 +35,11 @@ export default (app: express.Application) => {
     );
 
     router.get(
-        '/by-country-name',
-        statisticsByCountryNameValidation,
+        '/by-continent-name',
+        statisticsByContinentValidation,
         validateFieldsMiddleware,
         (req: Request, res: Response, next: NextFunction) =>
-            statisticController.getStatisticsByCountryName(req, res, next),
+            statisticController.getStatisticsByContinentName(req, res, next),
     );
 
     app.use('/statistics', router);
