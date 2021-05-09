@@ -39,6 +39,6 @@ const newDeathsValidation = [
         .withMessage('The number of new deaths must be greater than zero'),
 ];
 
-const statisticsByCountryNameValidation = [query('countryName', 'The countryName is required').isString().exists()];
+const statisticsByContinentValidation = [query('continentName', 'The continent name is required').isString().exists()];
 
-export { newDeathsValidation, newCasesValidation, newTestsValidation, statisticsByCountryNameValidation };
+export { newDeathsValidation, newCasesValidation, newTestsValidation, statisticsByContinentValidation };

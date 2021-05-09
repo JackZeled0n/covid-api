@@ -17,7 +17,7 @@ class StatisticRepository {
         return statistic;
     }
 
-    async getStatisticsByCountryName(continentName: string): Promise<CovidStatisticDocument[]> {
+    async getStatisticsByContinentName(continentName: string): Promise<CovidStatisticDocument[]> {
         const statistics = await this.covidStatisticModel.find({
             continent: continentName,
         });

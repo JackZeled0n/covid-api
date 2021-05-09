@@ -17,10 +17,10 @@ class StatisticController {
         }
     }
 
-    public async getStatisticsByCountryName(req: Request, res: Response, next: NextFunction) {
+    public async getStatisticsByContinentName(req: Request, res: Response, next: NextFunction) {
         try {
             const queryData = matchedData(req, { locations: ['query'] });
-            const statistics = await this.statisticService.getStatisticsByCountryName(queryData.countryName);
+            const statistics = await this.statisticService.getStatisticsByContinentName(queryData.continentName);
 
             res.send(statistics);
         } catch (err) {
