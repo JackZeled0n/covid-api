@@ -23,6 +23,16 @@ class StatisticService {
         }
     }
 
+    async getStatisticsByCountryName(continentName: string): Promise<CovidStatisticDocument[]> {
+        try {
+            const statistics = await this.statisticRepository.getStatisticsByCountryName(continentName);
+            return statistics;
+        } catch (err) {
+            this.log.error('An error has been ocurred in getStatisticsByCountryName service');
+            throw err;
+        }
+    }
+
     async addNewCases(newCaseDto: NewCaseDto): Promise<CovidStatisticDocument> {
         try {
             const statistic = await this.getStatisticById(newCaseDto.statisticId);

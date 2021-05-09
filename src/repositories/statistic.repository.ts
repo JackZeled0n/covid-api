@@ -17,6 +17,14 @@ class StatisticRepository {
         return statistic;
     }
 
+    async getStatisticsByCountryName(continentName: string): Promise<CovidStatisticDocument[]> {
+        const statistics = await this.covidStatisticModel.find({
+            continent: continentName,
+        });
+
+        return statistics;
+    }
+
     async addNewDeaths(newDeathDto: NewDeathDto, statistic: CovidStatisticDocument): Promise<CovidStatisticDocument> {
         const { newDeaths } = newDeathDto;
         statistic.deaths.newDeaths += newDeaths;

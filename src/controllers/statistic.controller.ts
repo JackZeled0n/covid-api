@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { matchedData } from 'express-validator';
 import { Service } from 'typedi';
 import StatisticService from '../services/statistic.service';
 
@@ -9,6 +10,17 @@ class StatisticController {
     public async getAllStatistics(_req: Request, res: Response, next: NextFunction) {
         try {
             const statistics = await this.statisticService.getAllStatistics();
+
+            res.send(statistics);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    public async getStatisticsByCountryName(req: Request, res: Response, next: NextFunction) {
+        try {
+            const queryData = matchedData(req, { locations: ['query'] });
+            const statistics = await this.statisticService.getStatisticsByCountryName(queryData.countryName);
 
             res.send(statistics);
         } catch (err) {
