@@ -13,7 +13,12 @@ class AuthController {
             const { userId, userName, name, accessToken } = await this.authService.login(req.body);
 
             const secure = variables.NODE_ENV !== 'development';
-            res.cookie(ACCESS_TOKEN_COOKIE_NAME, accessToken, { secure, httpOnly: true });
+            const sameSite = variables.NODE_ENV !== 'development' ? 'none' : 'lax';
+            res.cookie(ACCESS_TOKEN_COOKIE_NAME, accessToken, {
+                secure,
+                httpOnly: true,
+                sameSite,
+            });
             res.send({ userId, userName, name, accessToken });
         } catch (err) {
             next(err);
