@@ -10,7 +10,7 @@ export interface EnvVariables {
 }
 
 export const variables: EnvVariables = {
-    SERVER_PORT: +(process.env.PORT, 3000),
+    SERVER_PORT: +(process.env.PORT || 3000),
     X_RAPIDAPI_KEY: process.env.X_RAPIDAPI_KEY || '',
 
     // MONGO VARIABLES
