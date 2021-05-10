@@ -36,7 +36,7 @@ class AuthController {
     }
 
     public async logout(_req: Request, res: Response) {
-        res.clearCookie(ACCESS_TOKEN_COOKIE_NAME);
+        res.cookies(ACCESS_TOKEN_COOKIE_NAME, { expires: Date.now() });
         res.status(200).json({
             message: 'Successfully Logout',
         });
