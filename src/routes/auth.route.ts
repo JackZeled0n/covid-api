@@ -22,5 +22,7 @@ export default (app: express.Application) => {
         authController.me(req, res, next),
     );
 
+    router.get('/logout', verifyAuth, (req: Request, res: Response) => authController.logout(req, res));
+
     app.use('/auth', router);
 };

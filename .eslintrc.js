@@ -13,7 +13,10 @@ module.exports = {
     },
     rules: {
         'no-console': 'warn',
-        'class-methods-use-this': ['error', { exceptMethods: ['addNewDeaths', 'addNewCases', 'addNewTests'] }],
+        'class-methods-use-this': [
+            'error',
+            { exceptMethods: ['addNewDeaths', 'addNewCases', 'addNewTests', 'logout'] },
+        ],
         'no-param-reassign': ['off'],
     },
 };
