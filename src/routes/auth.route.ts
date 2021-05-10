@@ -4,6 +4,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import validateFieldsMiddleware from '../middleware/validate-fields.middleware';
 import AuthController from '../controllers/auth.controller';
 import loginValidation from './validations/login.validation';
+import verifyAuth from '../middleware/auth.middleware';
 
 export default (app: express.Application) => {
     const authController = Container.get(AuthController);
@@ -15,6 +16,10 @@ export default (app: express.Application) => {
         loginValidation,
         validateFieldsMiddleware,
         (req: Request, res: Response, next: NextFunction) => authController.login(req, res, next),
+    );
+
+    router.get('/me', verifyAuth, (req: Request, res: Response, next: NextFunction) =>
+        authController.me(req, res, next),
     );
 
     app.use('/auth', router);

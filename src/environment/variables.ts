@@ -7,11 +7,17 @@ export interface EnvVariables {
     MONGO_DATABASE_NAME: string;
     MONGO_CLUSTER_URL: string;
     URL_WEBSITE: string;
+    ACCESS_TOKEN_SECRET: string;
+    ACCESS_TOKEN_LIFE: number;
 }
 
 export const variables: EnvVariables = {
     SERVER_PORT: +(process.env.PORT || 3000),
     X_RAPIDAPI_KEY: process.env.X_RAPIDAPI_KEY || '',
+
+    // ACCESS TOKEN VARIABLES
+    ACCESS_TOKEN_SECRET: process.env.TOKEN_SECRET || '@secret*c0v1d',
+    ACCESS_TOKEN_LIFE: +(process.env.ACCESS_TOKEN_LIFE || 120),
 
     // MONGO VARIABLES
     NODE_ENV: process.env.NODE_ENV || 'development',

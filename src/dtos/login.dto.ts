@@ -4,6 +4,8 @@ export interface LoginDto {
 }
 
 export interface LoginUserInfoDto {
+    userId: string;
     name: string;
     userName: string;
+    accessToken: string;
 }

@@ -1,5 +1,6 @@
 import Container from 'typedi';
 import express, { NextFunction, Request, Response } from 'express';
+import verifyAuth from '../middleware/auth.middleware';
 import validateFieldsMiddleware from '../middleware/validate-fields.middleware';
 import StatisticController from '../controllers/statistic.controller';
 import {
@@ -42,5 +43,5 @@ export default (app: express.Application) => {
             statisticController.getStatisticsByContinentName(req, res, next),
     );
 
-    app.use('/statistics', router);
+    app.use('/statistics', verifyAuth, router);
 };

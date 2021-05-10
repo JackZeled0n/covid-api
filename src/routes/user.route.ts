@@ -1,5 +1,6 @@
 import Container from 'typedi';
 import express, { NextFunction, Request, Response } from 'express';
+import verifyAuth from '../middleware/auth.middleware';
 import UserController from '../controllers/user.controller';
 import createUserValidation from './validations/create-user.validation';
 import validateFieldsMiddleware from '../middleware/validate-fields.middleware';
@@ -16,5 +17,5 @@ export default (app: express.Application) => {
         (req: Request, res: Response, next: NextFunction) => userController.createUser(req, res, next),
     );
 
-    app.use('/users', router);
+    app.use('/users', verifyAuth, router);
 };
